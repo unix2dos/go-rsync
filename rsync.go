@@ -2,12 +2,12 @@ package rsync
 
 import (
 	"errors"
+	"log"
 	"os/exec"
 	"strconv"
 	"strings"
 
-	"fhyx/lib/log"
-	"fhyx/lib/ssh"
+	ssh "github.com/unix2dos/go-ssh"
 )
 
 type Options struct {
@@ -174,7 +174,7 @@ func (r *Rsync) command(dst string, src ...string) *exec.Cmd {
 		return nil
 	}
 
-	log.Infof("exec: %s\n", strings.Join(args, " "))
+	log.Printf("exec: %s\n", strings.Join(args, " "))
 	cmd := exec.Command(args[0], args[1:]...)
 	return cmd
 }

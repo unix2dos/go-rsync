@@ -2,11 +2,10 @@ package rsync
 
 import (
 	"errors"
+	"log"
 	"os/exec"
 	"strconv"
 	"strings"
-
-	"fhyx/lib/log"
 )
 
 type SSH struct {
@@ -92,7 +91,7 @@ func (s *SSH) RunCommand(args []string) (string, error) {
 		return e, errors.New(e)
 	}
 
-	log.Infof("exec: %s\n", strings.Join(args, " "))
+	log.Printf("exec: %s\n", strings.Join(args, " "))
 	res, err := exec.Command(args[0], args[1:]...).CombinedOutput()
 	return string(res), err
 }
